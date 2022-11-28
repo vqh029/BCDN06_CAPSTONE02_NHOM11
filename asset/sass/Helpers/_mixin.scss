@@ -1,0 +1,26 @@
+@mixin styleButton($bg, $color, $radius, $pd-y, $pd-x) {
+    background: $bg;
+    color: $color;
+    border-radius: $radius;
+    padding: $pd-y $pd-x;
+}
+
+@mixin styleButtonHover($bg-hover, $border-hover, $color-hover) {
+    background: $bg-hover;
+    border: $border-hover;
+    color: $color-hover;
+}
+
+@mixin responsive($screen){
+    @if(map-has-key($map: $breakpoints, $key: $screen)){
+        //nếu có tên màn hình trong $breakpoints
+        //lấy giá trị màn hình và lưu vào biến value
+        $value: map-get($map: $breakpoints, $key: $screen);
+        @media screen and (max-width: $value){
+            @content;
+        }
+    }
+    @else{
+        @warn 'màn hình không tồn tại'
+    }
+}

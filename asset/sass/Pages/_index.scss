@@ -1,0 +1,31 @@
+.page-main {
+    background: #ff9966;
+    background: -webkit-linear-gradient(to right, #ff5e62, #ff9966);
+    background: linear-gradient(to right, #ff5e62, #ff9966);
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.page-main .container{
+    height: 100%;
+}
+
+.page-main .content-wrapper{
+    margin-top: 200px;
+    padding: 0 40px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.page-main .btn-custom{
+    @include styleButton($color-white-1, $color-orange, null, null, null);
+    border: 1px solid $color-orange;
+
+    &:hover, &:active, &:focus-visible{
+        @include styleButtonHover($color-orange, $color-orange, $color-white-1);
+        border: 1px solid;
+        outline: none;
+        box-shadow: none;
+    }
+}
