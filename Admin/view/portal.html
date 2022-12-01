@@ -54,7 +54,7 @@
         <h2>Trang quản lý sản phẩm</h2>
         <div class="row d-flex">
           <div class="col-md-8">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">Thêm sản
+            <button type="button" id="btnAddNewSP" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Thêm sản
               phẩm mới</button>
           </div>
 
@@ -75,6 +75,7 @@
               <th>Tên Sản Phẩm</th>
               <th>Giá</th>
               <th>Màn hình</th>
+              <th>Mô tả</th>
               <th>Loại</th>
               <th>Action</th>
             </thead>
@@ -89,53 +90,80 @@
             <div class="modal-content">
               <!-- Modal Header -->
               <div class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
-                <button type="button" class="close" data-bs-dismiss="modal">
+                <h4 class="modal-title">Điền thông tin sản phẩm</h4>
+                <button type="button" id="btnCloseModal" class="close" data-bs-dismiss="modal">
                   <i class="fa-solid fa-xmark"></i>
                 </button>
               </div>
               <!-- Modal body -->
               <div class="modal-body">
-                <div class="form-group">
-                  <label>Tên Sản Phẩm</label>
-                  <input id="TenSP" class="form-control" placeholder="Nhập vào tên sản phẩm" />
-                </div>
-                <div class="form-group">
-                  <label>Loại Sản Phẩm</label>
-                  <input id="TypeSP" class="form-control" placeholder="Nhập vào loại sản phẩm" />
-                </div>
-                <div class="form-group">
-                  <label>Giá</label>
-                  <input id="GiaSP" class="form-control" placeholder="Nhập vào giá" />
-                </div>
-                <div class="form-group">
-                  <label>Màn hình</label>
-                  <input id="ScreenSP" class="form-control" placeholder="Nhập vào màn hình" />
-                </div>
-                <div class="form-group">
-                  <label>Camera sau</label>
-                  <input id="BackCamSP" class="form-control" placeholder="Nhập vào camera sau" />
-                </div>
-                <div class="form-group">
-                  <label>Camera trước</label>
-                  <input id="FrontCamSP" class="form-control" placeholder="Nhập vào camera trước" />
-                </div>
-                <div class="form-group">
-                  <label>Hình Ảnh</label>
-                  <input id="HinhSP" class="form-control" placeholder="Nhập vào hình sản phẩm" />
-                </div>
-                <div class="form-group">
-                  <label>Mô tả</label>
-                  <textarea class="form-control" id="Mota" cols="30" rows="10" placeholder="Nhập mô tả"></textarea>
-                </div>
+                <form>
+                  <div class="form-group">
+                    <label>Tên Sản Phẩm</label>
+                    <input id="TenSP" class="form-control" placeholder="Nhập vào tên sản phẩm" />
+                    <span class="sp-thongbao" id="TBTenSP"></span>
+                  </div>
+                  <div class="form-group">
+                    <label>Loại Sản Phẩm</label>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="typeProd" id="typeProd1" value="Iphone"
+                        checked>
+                      <label class="form-check-label" for="typeProd1" style="margin-top: 0">
+                        Iphone
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="typeProd" id="typeProd2" value="Samsung">
+                      <label class="form-check-label" for="typeProd2" style="margin-top: 0">
+                        Samsung
+                      </label>
+                    </div>
+                    <span class="sp-thongbao" id="TBLoaiSP"></span>
+                  </div>
+                  <div class="form-group">
+                    <label>Giá</label>
+                    <input id="GiaSP" class="form-control" placeholder="Nhập vào giá" />
+                    <span class="sp-thongbao" id="TBGiaSP"></span>
+                  </div>
+                  <div class="form-group">
+                    <label>Màn hình</label>
+                    <input id="ScreenSP" class="form-control" placeholder="Nhập vào màn hình" />
+                    <span class="sp-thongbao" id="TBManHinhSP"></span>
+                  </div>
+                  <div class="form-group">
+                    <label>Camera sau</label>
+                    <input id="BackCamSP" class="form-control" placeholder="Nhập vào camera sau" />
+                    <span class="sp-thongbao" id="TBCamSauSP"></span>
+                  </div>
+                  <div class="form-group">
+                    <label>Camera trước</label>
+                    <input id="FrontCamSP" class="form-control" placeholder="Nhập vào camera trước" />
+                    <span class="sp-thongbao" id="TBCamTruocSP"></span>
+                  </div>
+                  <div class="form-group">
+                    <label>Hình Ảnh</label>
+                    <input id="HinhSP" class="form-control" placeholder="Nhập vào hình sản phẩm" />
+                    <span class="sp-thongbao" id="TBHinhSP"></span>
+                  </div>
+                  <div class="form-group">
+                    <label>Mô tả</label>
+                    <textarea class="form-control" id="MotaSP" cols="30" rows="10" placeholder="Nhập mô tả"></textarea>
+                    <span class="sp-thongbao" id="TBMoTaSP"></span>
+                  </div>
+                </form>
               </div>
               <!-- Modal footer -->
-              <div class="modal-footer"></div>
+              <div class="modal-footer">
+                <div class="footer-content">
+
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
+
     </div>
     </div>
 
@@ -152,6 +180,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js"
     integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <script src="../Model/SanPham.js"></script>
+  <script src="../Services/AdminServices.js"></script>
+  <script src="../Controller/Validation.js"></script>
+  <script src="../Controller/MainPortal.js"></script>
 </body>
 
 </html>
