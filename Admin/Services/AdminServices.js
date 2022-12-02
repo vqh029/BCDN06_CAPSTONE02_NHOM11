@@ -29,4 +29,12 @@ function AdminServices(){
             
         })
     }
+
+    this.capNhatSP = (id, SP) => {
+        return axios({
+            method: 'put',
+            url: `https://63856645beaa6458265ec20f.mockapi.io/products/${id}`,
+            data: SP
+        })
+    }
 }

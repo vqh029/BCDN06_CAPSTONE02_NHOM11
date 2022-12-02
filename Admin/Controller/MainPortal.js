@@ -31,7 +31,7 @@ function hienThiTable(mangSP) {
             <td>${sp.type}</td>
             <td>
                 <button class="btn btn-danger" onclick="xoaSP('${sp.id}')" >Xóa</button>
-                <button class="btn btn-warning" onclick="xemCT('${sp.id}')" data-toggle="modal" data-target="#myModal"  >Sửa</button>
+                <button class="btn btn-warning" onclick="capNhatSP('${sp.id}')" data-bs-toggle="modal" data-bs-target="#myModal"  >Sửa</button>
             </td>
         </tr>`
     });
@@ -67,8 +67,7 @@ function themSanPham() {
     hinh = hinh.replace(/\s/g, "");
 
     var isValid = true;
-    isValid &= validation.checkEmpty(tenSP, "Tên không được để trống", "TBTenSP") &&
-        validation.tenTrung(tenSP, "Trùng tên sản phẩm", "TBTenSP");
+    isValid &= validation.checkEmpty(tenSP, "Tên không được để trống", "TBTenSP");
 
     isValid &= validation.checkEmpty(giaSP, "Giá không được để trống", "TBGiaSP") &&
         validation.checkPrice(giaSP, "Giá không nhỏ hơn 0", "TBGiaSP");
@@ -104,6 +103,7 @@ function themSanPham() {
 
 $('#myModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
+    document.querySelector("#myModal .footer-content").innerHTML = "";
     document.getElementById("TBTenSP").style.display = "none";
     document.getElementById("TBGiaSP").style.display = "none";
     document.getElementById("TBManHinhSP").style.display = "none";
@@ -113,25 +113,93 @@ $('#myModal').on('hidden.bs.modal', function () {
     document.getElementById("TBHinhSP").style.display = "none";
 })
 
-function xemCT(id) {
-    adminService.layChiTietSP(id)
-        .then(function (result) {
-            //lấy data API thành công
-            console.log(result.data);
-            document.querySelector("#HinhSPDT").src = result.data.img;
-            document.querySelector("#TenSPDT").value = result.data.name;
-            document.querySelector("#MoTaSPDT").value = result.data.desc;
-            document.querySelector("#LoaiSPDT").value = result.data.type;
-            document.querySelector("#GiaSPDT").value = result.data.price;
-            document.querySelector("#ManHinhSPDT").value = result.data.screen;
-            document.querySelector("#HinhSPDT").value = result.data.img;
-            document.querySelector("#CamSauSPDT").value = result.data.backCamera;
-            document.querySelector("#CamTruocSPDT").value = result.data.frontCamera;
 
+function capNhatSP(id) {
+    var promise = adminService.layChiTietSP(id);
+
+    promise.then(result => {
+        document.querySelector("#myModal .footer-content").innerHTML = `<button class="btn btn-success" onclick="xacNhanCapNhatSP('${id}')">Cập nhật</button>`
+        document.querySelector("#HinhSP").value = result.data.img;
+        document.querySelector("#TenSP").value = result.data.name;
+        document.querySelector("#MotaSP").value = result.data.desc;
+        document.querySelector("#GiaSP").value = result.data.price;
+        document.querySelector("#ScreenSP").value = result.data.screen;
+        document.querySelector("#HinhSP").value = result.data.img;
+        document.querySelector("#BackCamSP").value = result.data.backCamera;
+        document.querySelector("#FrontCamSP").value = result.data.frontCamera;
+
+        if (result.data.type == "Iphone") {
+            document.querySelector("#typeProd1").checked = true;
+        }
+        else {
+            document.querySelector("#typeProd2").checked = true;
+        }
+    });
+
+    promise.catch(error =>
+        console.log(error));
+
+
+}
+
+function xacNhanCapNhatSP(id) {
+    var tenSP = document.getElementById("TenSP").value;
+    var giaSP = document.getElementById("GiaSP").value;
+    var manHinhSP = document.getElementById("ScreenSP").value;
+    var camTruoc = document.getElementById("FrontCamSP").value;
+    var camSau = document.getElementById("BackCamSP").value;
+    var moTa = document.getElementById("MotaSP").value;
+    var hinh = document.getElementById("HinhSP").value;
+    var type1 = document.getElementById("typeProd1").value;
+    var type2 = document.getElementById("typeProd2").value;
+    var loaiSP = "";
+    if (type1) {
+        loaiSP = type1;
+    }
+    else {
+        loaiSP = type2;
+    }
+
+    tenSP = tenSP.replace(/\s/g, "");
+    giaSP = giaSP.replace(/\s/g, "");
+    manHinhSP = manHinhSP.replace(/\s/g, "");
+    camTruoc = camTruoc.replace(/\s/g, "");
+    camSau = camSau.replace(/\s/g, "");
+    moTa = moTa.replace(/\s/g, "");
+    hinh = hinh.replace(/\s/g, "");
+
+    var isValid = true;
+    isValid &= validation.checkEmpty(tenSP, "Tên không được để trống", "TBTenSP");
+
+    isValid &= validation.checkEmpty(giaSP, "Giá không được để trống", "TBGiaSP") &&
+        validation.checkPrice(giaSP, "Giá không nhỏ hơn 0", "TBGiaSP");
+
+    isValid &= validation.checkEmpty(manHinhSP, "Màn hình không được để trống", "TBManHinhSP");
+
+    isValid &= validation.checkEmpty(camTruoc, "Camera trước không được để trống", "TBCamTruocSP");
+
+    isValid &= validation.checkEmpty(camSau, "Camera sau không được để trống", "TBCamSauSP");
+
+    isValid &= validation.checkEmpty(moTa, "Mô tả không được để trống", "TBMoTaSP");
+
+    isValid &= validation.checkEmpty(hinh, "Hình không được để trống", "TBHinhSP");
+
+
+    if (isValid) {
+        var sp = new SanPham(tenSP, giaSP, manHinhSP, camSau, camTruoc, hinh, moTa, loaiSP);
+        var promise = adminService.capNhatSP(id, sp);
+
+        promise.then(result => {
+            layDanhSachSanPham();
         })
-        .catch(function (error) {
-            console.log(error)
+
+        promise.catch(error => {
+            console.log(error);
         })
+
+        document.getElementById("btnCloseModal").click();
+        document.querySelector("form").reset();
+    }
 }
 
 function xoaSP(id) {

@@ -50,6 +50,45 @@ body {
   box-shadow: none;
 }
 
+@media screen and (max-width: 575.98px) {
+  .page-main {
+    overflow-y: auto;
+  }
+  .page-main .content-wrapper {
+    flex-direction: column;
+    margin-top: 40px;
+  }
+  .page-main .content-wrapper .card {
+    width: 180px;
+    margin-bottom: 20px;
+  }
+  .page-main .content-wrapper .card img {
+    width: 100%;
+    height: 180px;
+  }
+}
+.page-admin .container {
+  padding: 0;
+}
+.page-admin .navbar {
+  background: #f46b45;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #eea849, #f46b45);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #eea849, #f46b45);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.page-admin .navbar .navbar-brand {
+  color: #fff;
+}
+.page-admin .navbar .nav-link {
+  color: #fff;
+  transition: all 0.25s linear;
+}
+.page-admin .navbar .nav-link:hover {
+  color: rgb(227, 227, 227);
+}
+
 .tblSanPham {
   padding-top: 20px;
 }
@@ -62,4 +101,10 @@ body {
   color: red;
   margin-left: 2px;
   display: none;
+}
+
+@media screen and (min-width: 1400px) {
+  .page-admin .container {
+    max-width: 100%;
+  }
 }/*# sourceMappingURL=main.css.map */
