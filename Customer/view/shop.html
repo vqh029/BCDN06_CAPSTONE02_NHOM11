@@ -1,68 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ShopPi</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopPi</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
-    />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="./asset/css/main.css" />
-  </head>
-  <body>
-    <header class="page-admin">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="../../asset/css/main.css" />
+</head>
+
+<body>
+  <div id="page-customer">
+    <header class="page-nav-customer">
       <div class="container">
         <div class="content-wrapper">
-          <nav class="navbar navbar-expand-lg bg-light">
+          <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">
                 <i class="fa-solid fa-shop"></i>
                 <span>ShopPi</span>
               </a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <div
-                class="collapse navbar-collapse navbar-options"
-                id="navbarTogglerDemo02"
-              >
+              <div class="collapse navbar-collapse navbar-options" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      <i class="fa-solid fa-cart-shopping ic-cart"></i>
-                      <p>Giỏ hàng</p>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link" href="../../index.html">
-                      <i class="fa-solid fa-door-open ic-home"></i>
-                      <p>Homepage</p>
-                    </a>
-                  </li>
                 </ul>
+
+                <div>
+                  <a class="nav-link" href="#">
+                    <i class="fa-solid fa-cart-shopping ic-cart">
+                      <span class="badge-custom">99</span>
+                    </i>
+                    <span style="padding-left: 10px;">Giỏ hàng</span>
+
+                  </a>
+                </div>
+
+                <div>
+                  <a class="nav-link" href="../../index.html">
+                    <i class="fa-solid fa-door-open ic-home"></i>
+                    <span style="padding-left: 10px;">HomePage</span>
+                  </a>
+                </div>
               </div>
             </div>
           </nav>
@@ -70,24 +60,62 @@
       </div>
     </header>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <section class="page-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <h4 style="text-align: center;">Chào mừng quý khách hàng đã ghé thăm mua sắm điện thoại di động chính hãng
+            trên trang ShopPi</h4>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-      crossorigin="anonymous"
-    ></script>
+          <div class="row d-flex">
+            <div class="col-md-8">
+              <h5>Danh sách sản phẩm</h5>
+            </div>
+            <div class="col-md-4">
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js"
-      integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-  </body>
+            </div>
+          </div>
+
+          <div class="row d-flex">
+            <div class="col-md-4">
+
+              <label for="select-filterType">Lọc sản phẩm</label>
+              <select id="select-filterType" class="form-select input-filter" aria-label="Default select example"
+                onchange="filterSP()">
+                <option selected>Open this select menu</option>
+                <option value="Iphone">Iphone</option>
+                <option value="Samsung">Samsung</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="list-product" class="row list-wrapper">
+            <!-- <div class="col-md-4">
+
+            </div> -->
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+    integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js"
+    integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="../../ProductList.js"></script>
+  <script src="../Services/CustomerServices.js"></script>
+  <script src="../Controller/MainCustomer.js"></script>
+</body>
+
 </html>

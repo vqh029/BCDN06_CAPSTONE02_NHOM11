@@ -2,7 +2,6 @@ var adminService = new AdminServices();
 const validation = new Validation();
 
 function layDanhSachSanPham() {
-    let nameArr = [];
     var promise = adminService.layDanhSachSP();
 
     promise.then((result) => {
