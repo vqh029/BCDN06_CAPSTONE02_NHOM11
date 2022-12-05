@@ -38,9 +38,9 @@
                 </ul>
 
                 <div>
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalGioHang" onclick="renderCart()">
                     <i class="fa-solid fa-cart-shopping ic-cart">
-                      <span class="badge-custom">99</span>
+                      <span id="noti-cart" class="badge-custom">0</span>
                     </i>
                     <span style="padding-left: 10px;">Giỏ hàng</span>
 
@@ -98,6 +98,62 @@
       </div>
 
     </section>
+
+    <div class="modal fade" id="modalGioHang" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog .modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Thông tin giỏ hàng</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table id="table-cart" class="table table-responsive table-hover">
+              <thead class="table-warning">
+                <tr>
+                  <th scope="col">STT</th>
+                  <th scope="col">Tên sản phẩm</th>
+                  <th scope="col">Số lượng</th>
+                  <th scope="col">Đơn giá</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody id="table-cart-content">
+              </tbody>
+            </table>
+
+            <div class="d-flex justify-content-end">
+              <span>Tổng tiền: </span>
+              <span id="total-price"></span>
+              <span> VND</span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Đóng</button>
+            <button type="button" class="btn btn-primary btn-custom" data-bs-target="#modalXacNhanTT"
+              data-bs-toggle="modal">Thanh toán</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalXacNhanTT" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+      tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Thông báo</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Chúc mừng bạn đã thanh toán thành công.
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success btn-custom" data-bs-dismiss="modal" onclick="xoaGioHang()">Xác nhận</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
@@ -113,7 +169,9 @@
     integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="../../ProductList.js"></script>
+  <script src="../Model/Product.js"></script>
+  <script src="../Model/ProductList.js"></script>
+  <script src="../Model/CartItem.js"></script>
   <script src="../Services/CustomerServices.js"></script>
   <script src="../Controller/MainCustomer.js"></script>
 </body>

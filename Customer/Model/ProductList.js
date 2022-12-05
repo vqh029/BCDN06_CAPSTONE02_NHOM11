@@ -15,8 +15,8 @@ function DanhSachSanPham(){
         return viTri;
     }
 
-    this.capNhatSoLuong = function(masp){
-        var viTri = this.timViTriSP(masp.taiKhoan);
+    this.capNhatSP = function(masp){
+        var viTri = this.timViTriSP(masp.id);
         if(viTri > -1){
             //tìm thấy
             dsnv.mangSanPham[viTri] = masp
@@ -30,11 +30,4 @@ function DanhSachSanPham(){
         }
     }
 
-    this.clearList= function(){
-        if(this.mangSanPham != null || this.mangSanPham != []){
-            for(var i = 0; i < this.mangSanPham.length; i++){
-                this.mangSanPham.pop();
-            }
-        }
-    }
 }

@@ -1,13 +1,32 @@
 var customerServices = new CustomerServices();
 const dssp = new DanhSachSanPham();
+let cart = [];
 
 function setLocalStorage() {
     localStorage.setItem("DSSP", JSON.stringify(dssp.mangSanPham));
 }
 
+function setLocalCart() {
+    localStorage.setItem("Cart", JSON.stringify(cart));
+}
+
 function getLocalStorage() {
-    if (localStorage.getItem("DSSP") != null || localStorage.getItem("DSSP") != undefined) {
+    if (localStorage.getItem("DSSP") != null && localStorage.getItem("DSSP") != undefined) {
         dssp.mangSanPham = JSON.parse(localStorage.getItem("DSSP"));
+    }
+}
+
+function getLocalCart() {
+    if (localStorage.getItem("Cart") != null && localStorage.getItem("Cart") != []) {
+        cart = JSON.parse(localStorage.getItem("Cart"));
+        let total = 0;
+        cart.forEach(item => {
+            total += item.soLuong;
+        })
+        document.querySelector("#noti-cart").innerHTML = total;
+    }
+    else {
+        document.querySelector("#noti-cart").innerHTML = 0;
     }
 }
 
@@ -28,6 +47,7 @@ function layDanhSachSanPham() {
 
 layDanhSachSanPham();
 getLocalStorage();
+getLocalCart();
 
 function hienThiList(mangSP) {
     var content = "";
@@ -48,7 +68,7 @@ function hienThiList(mangSP) {
                 <li class="list-group-item">Cam sau: ${sp.backCamera}</li>
             </ul>
             <div class="card-body">
-                <button class="btn btn-success">Thêm vào giỏ</button>
+                <button class="btn btn-success" onClick="themGioHang(${sp.id})">Thêm vào giỏ</button>
             </div>
         </div>`
     });
@@ -81,4 +101,74 @@ function filterSP() {
     else {
         layDanhSachSanPham();
     }
+}
+
+function themGioHang(id) {
+    var viTri = dssp.timViTriSP(id);
+    if (viTri != -1) {
+        let pos;
+        if (cart.length != 0) {
+            cart.forEach((item, index) => {
+                if (item.sp.id == id) {
+                    pos = index;
+                }
+            });
+
+            if (pos != null || pos != undefined) {
+                cart[pos].soLuong += 1;
+            }
+            else {
+                var cartItem = new CartItem(dssp.mangSanPham[viTri], 1);
+                cart.push(cartItem);
+            }
+
+        } else {
+            var cartItem = new CartItem(dssp.mangSanPham[viTri], 1);
+            cart.push(cartItem);
+        }
+
+        setLocalCart();
+        getLocalCart();
+    }
+
+}
+
+function renderCart(){
+    var content = "";
+    var count = 1;
+    var total = 0;
+    cart.map(function (item, index) {
+        content += `<tr>
+            <td>${count++}</td>
+            <td>${item.sp.name}</td>
+            <td>${item.soLuong}</td>
+            <td>${item.sp.price}</td>
+            <td>
+                <button class="btn btn-danger" onclick="xoaKhoiGH('${index}')" >Xóa</button>
+            </td>
+        </tr>`
+    });
+
+    cart.forEach(item => {
+        total += (item.sp.price * item.soLuong);
+    })
+
+    document.querySelector("#table-cart-content").innerHTML = content;
+    document.querySelector("#total-price").innerHTML = total;
+}
+
+function xoaKhoiGH(pos){
+    if(pos > -1){
+        cart.splice(pos, 1);
+    }
+    setLocalCart();
+    getLocalCart();
+    renderCart();
+}
+
+function xoaGioHang() {
+    cart.length = 0;
+    cart = [];
+    setLocalCart();
+    getLocalCart();
 }

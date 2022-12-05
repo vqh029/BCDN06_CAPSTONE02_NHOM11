@@ -47,14 +47,14 @@ function themSanPham() {
     var camSau = document.getElementById("BackCamSP").value;
     var moTa = document.getElementById("MotaSP").value;
     var hinh = document.getElementById("HinhSP").value;
-    var type1 = document.getElementById("typeProd1").value;
-    var type2 = document.getElementById("typeProd2").value;
+    var type1 = document.getElementById("typeProd1").checked;
+    var type2 = document.getElementById("typeProd2").checked;
     var loaiSP = "";
     if (type1) {
-        loaiSP = type1;
+        loaiSP = document.getElementById("typeProd1").value;
     }
     else {
-        loaiSP = type2;
+        loaiSP = document.getElementById("typeProd2").value;
     }
 
     tenSP = tenSP.replace(/\s/g, "");
@@ -62,7 +62,6 @@ function themSanPham() {
     manHinhSP = manHinhSP.replace(/\s/g, "");
     camTruoc = camTruoc.replace(/\s/g, "");
     camSau = camSau.replace(/\s/g, "");
-    moTa = moTa.replace(/\s/g, "");
     hinh = hinh.replace(/\s/g, "");
 
     var isValid = true;
@@ -103,6 +102,7 @@ function themSanPham() {
 $('#myModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
     document.querySelector("#myModal .footer-content").innerHTML = "";
+    document.querySelector("#myModal .footer-content").innerHTML = `<button class="btn btn-success" onclick="themSanPham()">Thêm mới</button>`
     document.getElementById("TBTenSP").style.display = "none";
     document.getElementById("TBGiaSP").style.display = "none";
     document.getElementById("TBManHinhSP").style.display = "none";
@@ -127,10 +127,10 @@ function capNhatSP(id) {
         document.querySelector("#BackCamSP").value = result.data.backCamera;
         document.querySelector("#FrontCamSP").value = result.data.frontCamera;
 
-        if (result.data.type == "Iphone") {
+        if (result.data.type == "Iphone" || result.data.type == "iphone") {
             document.querySelector("#typeProd1").checked = true;
         }
-        else {
+        else if (result.data.type == "Samsung" || result.data.type == "samsung"){
             document.querySelector("#typeProd2").checked = true;
         }
     });
@@ -149,14 +149,14 @@ function xacNhanCapNhatSP(id) {
     var camSau = document.getElementById("BackCamSP").value;
     var moTa = document.getElementById("MotaSP").value;
     var hinh = document.getElementById("HinhSP").value;
-    var type1 = document.getElementById("typeProd1").value;
-    var type2 = document.getElementById("typeProd2").value;
+    var type1 = document.getElementById("typeProd1").checked;
+    var type2 = document.getElementById("typeProd2").checked;
     var loaiSP = "";
     if (type1) {
-        loaiSP = type1;
+        loaiSP = document.getElementById("typeProd1").value;
     }
     else {
-        loaiSP = type2;
+        loaiSP = document.getElementById("typeProd2").value;
     }
 
     tenSP = tenSP.replace(/\s/g, "");
@@ -164,7 +164,6 @@ function xacNhanCapNhatSP(id) {
     manHinhSP = manHinhSP.replace(/\s/g, "");
     camTruoc = camTruoc.replace(/\s/g, "");
     camSau = camSau.replace(/\s/g, "");
-    moTa = moTa.replace(/\s/g, "");
     hinh = hinh.replace(/\s/g, "");
 
     var isValid = true;

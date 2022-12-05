@@ -186,6 +186,19 @@ body {
 #page-customer .page-content .content-wrapper #list-product .card img {
   padding-top: 10px;
 }
+#page-customer .btn-custom {
+  background: #fff;
+  color: #F66B0E;
+  border: 1px solid #F66B0E;
+}
+#page-customer .btn-custom:hover, #page-customer .btn-custom:active, #page-customer .btn-custom:focus-visible {
+  background: #F66B0E;
+  border: #F66B0E;
+  color: #fff;
+  border: 1px solid;
+  outline: none;
+  box-shadow: none;
+}
 
 @media screen and (min-width: 1400px) {
   .page-nav-customer .container {
